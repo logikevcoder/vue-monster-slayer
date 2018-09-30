@@ -16,18 +16,24 @@ new Vue({
       if (this.checkWin()) {
         return;
       }
-
-      this.playerHealth -= this.calculateDamage(6, 12);
-      this.checkWin();
+      this.monsterAttacks();
     },
     special: function() {
-
+      this.monsterHealth -= this.calculateDamage(10, 20);
+      if (this.checkWin()) {
+        return;
+      }
+      this.monsterAttacks();
     },
     heal: function() {
 
     },
     giveUp: function() {
 
+    },
+    monsterAttacks: function() {
+      this.playerHealth -= this.calculateDamage(6, 12);
+      this.checkWin();
     },
     calculateDamage: function(min, max) {
       return damage = Math.max(Math.floor(Math.random() * max) + 1, min); // generate random num between 3 - 10
